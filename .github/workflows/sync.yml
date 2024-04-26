@@ -28,6 +28,15 @@ jobs:
     - name: rm upstream
       run: |
         rm -rf upstream
+
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff-index --quiet HEAD --; then
+          echo "No changes detected. Skipping commit and push."
+          exit 0
+        fi
+    
         
     - name: Configure Git
       run: |
