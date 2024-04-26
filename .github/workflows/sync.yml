@@ -1,0 +1,36 @@
+name: update forked repo
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # 北京时间每周日凌晨执行
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: fetch upstream 
+      run: |
+        git clone https://github.com/wzdnzd/aggregator.git upstream
+        \cp upstream/aggregate/subscribe/* aggregate/subscribe/ -a
+
+    - name: rm upstream
+      run: |
+        rm -rf upstream
+      
+    - name: Commit and push changes
+      run: |
+        git add aggregate/subscribe
+        git commit -m "update repo from upstream"
+        git push
