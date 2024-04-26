@@ -28,6 +28,11 @@ jobs:
     - name: rm upstream
       run: |
         rm -rf upstream
+        
+    - name: Configure Git
+      run: |
+        git config user.name "GA Bot"
+        git config user.email "actions@github.com"
       
     - name: Commit and push changes
       run: |
