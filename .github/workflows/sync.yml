@@ -23,7 +23,7 @@ jobs:
     - name: fetch upstream 
       run: |
         git clone https://github.com/wzdnzd/aggregator.git upstream
-        \cp upstream/aggregate/subscribe/* aggregate/subscribe/ -a
+        \cp upstream/aggregate/* aggregate/ -a
 
     - name: rm upstream
       run: |
