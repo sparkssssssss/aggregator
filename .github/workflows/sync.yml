@@ -23,7 +23,7 @@ jobs:
     - name: fetch upstream 
       run: |
         git clone https://github.com/wzdnzd/aggregator.git upstream
-        \cp upstream/aggregate/* aggregate/ -a
+        \cp upstream/subscribe/* ./subscribe/ -a
 
     - name: rm upstream
       run: |
@@ -45,5 +45,5 @@ jobs:
       
     - name: Commit and push changes
       run: |
-        git add aggregate/subscribe
+        git add subscribe
         git commit -m "update repo from upstream" && git push || echo 'No update from upstrea!'
